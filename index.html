@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRID Expert Advisors · CEO Handoff Partner</title>
+<meta name="description" content="Infraestructura comercial externa para CEOs y founders. Recupera 20 horas a la semana mientras nuestro equipo califica, agenda y cierra por ti. 90 días blindados.">
+
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta property="og:title" content="GRID Expert Advisors · CEO Handoff Partner">
+<meta property="og:description" content="Recupera 20 horas a la semana. Equipo comercial externo, 6 sistemas integrados, 90 días blindados.">
+<meta property="og:image" content="https://gridexpertadvisors.com/logo.png">
+<meta property="og:url" content="https://gridexpertadvisors.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GRID Expert Advisors">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GRID Expert Advisors · CEO Handoff Partner">
+<meta name="twitter:description" content="Recupera 20 horas a la semana. 90 días blindados.">
+<meta name="twitter:image" content="https://gridexpertadvisors.com/logo.png">
+<link rel="canonical" href="https://gridexpertadvisors.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  .animate-bounce-slow { animation: bounce 2s infinite; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+    50% { transform: translateY(0); animation-timing-function: cubic-bezier(0,0,0.2,1); }
+  }
+  .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #0A1628; }
+  ::-webkit-scrollbar-thumb { background: #1D2A42; border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00D9FF; }
+
+  /* Búho 8-bit */
+  .flying-owl {
+    position: fixed;
+    width: 84px;
+    height: 84px;
+    z-index: 30;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 500ms ease;
+    will-change: top, transform;
+  }
+  .flying-owl.visible { opacity: 1; }
+  .flying-owl.perched {
+    position: absolute;
+  }
+  .owl-svg {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 2px 4px rgba(0, 217, 255, 0.4));
+  }
+
+  /* FASE 1: el búho aparece en el header llamando atención (wiggle dramático) */
+  .flying-owl.attention .owl-svg {
+    animation: owl-attention 0.55s ease-in-out infinite alternate;
+  }
+  @keyframes owl-attention {
+    from { transform: translateY(-2px) rotate(-6deg) scale(1); }
+    to   { transform: translateY(4px)  rotate(6deg)  scale(1.06); }
+  }
+  .flying-owl.attention .owl-wings {
+    animation: wing-flap 0.22s steps(1) infinite;
+    transform-origin: 7px 9px;
+    transform-box: fill-box;
+  }
+
+  /* FASE 2: el búho se zambulle hacia abajo bien rápido */
+  .flying-owl.diving {
+    animation: dive-down 1s cubic-bezier(0.55, 0, 0.85, 1) forwards;
+  }
+  @keyframes dive-down {
+    0%   { top: 18vh;  }
+    20%  { top: 22vh;  }
+    100% { top: calc(100vh + 100px); }
+  }
+  .flying-owl.diving .owl-svg {
+    animation: dive-tilt 0.12s ease-in-out infinite alternate;
+  }
+  @keyframes dive-tilt {
+    from { transform: rotate(-4deg) scaleY(0.95); }
+    to   { transform: rotate(4deg)  scaleY(1.05); }
+  }
+  .flying-owl.diving .owl-wings {
+    animation: wing-flap 0.1s steps(1) infinite;
+    transform-origin: 7px 9px;
+    transform-box: fill-box;
+  }
+
+  /* FASE 3: posado en el palito, parpadea cada 4s */
+  .flying-owl.perched .owl-eyes {
+    animation: owl-blink 4s ease-in-out infinite;
+    transform-origin: center center;
+    transform-box: fill-box;
+  }
+  .flying-owl.perched .owl-wings {
+    transform: scaleY(0.55) translateY(1px);
+    transform-origin: 7px 9px;
+    transform-box: fill-box;
+    opacity: 0.92;
+  }
+  .flying-owl.perched .owl-blink {
+    animation: blink-cover 4s ease-in-out infinite;
+  }
+  @keyframes wing-flap {
+    0%, 49%   { opacity: 1; transform: scaleY(1); }
+    50%, 100% { opacity: 0.3; transform: scaleY(0.25) translateY(-2px); }
+  }
+  @keyframes owl-blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    94%, 96%      { transform: scaleY(0.05); }
+  }
+  @keyframes blink-cover {
+    0%, 92%, 100% { opacity: 0; }
+    94%, 96%      { opacity: 1; }
+  }
+
+  /* Pequeña sacudida al posarse */
+  .flying-owl.landed {
+    animation: land-shake 0.4s ease-out;
+  }
+  @keyframes land-shake {
+    0%   { transform: translateX(-50%) translateY(-4px); }
+    40%  { transform: translateX(-50%) translateY(2px); }
+    70%  { transform: translateX(-50%) translateY(-1px); }
+    100% { transform: translateX(-50%) translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flying-owl { transition: none; }
+    .flying-owl * { animation: none !important; }
+  }
+  @media (max-width: 640px) {
+    .flying-owl { width: 60px; height: 60px; }
+  }
+</style>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'brand-bg': '#0A1628',
+          'brand-bg-alt': '#111F37',
+          'brand-card': '#111F37',
+          'brand-cream': '#F4F1EB',
+          'brand-cyan': '#00D9FF',
+          'brand-gold': '#FFB800',
+          'brand-red': '#FF4D4D',
+          'brand-success': '#16A34A',
+          'brand-border': 'rgba(244, 241, 235, 0.08)',
+          'text-primary': '#F4F1EB',
+          'text-secondary': '#8B93A5',
+          'text-muted': '#6B7280',
+        },
+        fontFamily: {
+          'serif': ['Playfair Display', 'serif'],
+          'sans': ['Inter', 'sans-serif'],
+          'mono': ['JetBrains Mono', 'monospace'],
+        },
+        scale: { '102': '1.02' }
+      }
+    },
+    plugins: [],
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    .selection-cream { @apply selection:bg-[#00D9FF] selection:text-[#0A1628]; }
+  }
+</style>
+</head>
+
+<body class="font-sans bg-[#0A1628] text-text-primary overflow-x-hidden selection-cream relative">
+
+<canvas id="tech-canvas" class="fixed top-0 left-0 w-full h-full z-0 block"></canvas>
+<div class="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-transparent to-[#0A1628] z-0 pointer-events-none"></div>
+
+<div class="relative z-10">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-[#0A1628]/80 backdrop-blur-md border-b border-brand-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex justify-between items-center h-20">
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="logo.png" alt="GRID Expert Advisors" class="h-14 w-14 object-contain logo-blend group-hover:scale-105 transition-transform">
+        <div class="leading-tight hidden sm:block">
+          <div class="font-serif font-extrabold text-lg text-text-primary tracking-tight">GRID</div>
+          <div class="font-mono text-[9px] text-text-muted uppercase tracking-[0.18em]">Expert Advisors</div>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#sistema" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Sistema</a>
+        <a href="#roadmap" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Implementación</a>
+        <a href="#equipo" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Equipo</a>
+        <a href="#inversion" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Inversión</a>
+        <a href="https://ssaldanoc-creator.github.io/formulariogrid/" target="_blank" rel="noopener noreferrer" class="px-6 py-2 rounded-full bg-brand-cyan text-[#0A1628] font-semibold text-sm hover:shadow-lg hover:shadow-brand-cyan/40 transition-all transform hover:scale-105">
+          Agendar Discovery
+        </a>
+      </div>
+
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-white hover:text-brand-cream transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-brand-bg border-b border-brand-border shadow-2xl">
+    <div class="px-4 py-4 space-y-2">
+      <a href="#sistema" class="block w-full text-left px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg hover:text-brand-cream">Sistema</a>
+      <a href="#roadmap" class="block w-full text-left px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg hover:text-brand-cream">Implementación</a>
+      <a href="#equipo" class="block w-full text-left px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg hover:text-brand-cream">Equipo</a>
+      <a href="#inversion" class="block w-full text-left px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg hover:text-brand-cream">Inversión</a>
+      <a href="#contacto" class="block w-full text-left px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg hover:text-brand-cream">Contacto</a>
+      <a href="https://ssaldanoc-creator.github.io/formulariogrid/" target="_blank" rel="noopener noreferrer" class="block w-full text-center mt-2 px-4 py-3 rounded-full bg-brand-cyan text-[#0A1628] font-semibold">Agendar Discovery</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section id="home" class="pt-40 pb-20 px-6 max-w-4xl mx-auto flex flex-col items-center text-center">
+  <div class="reveal-on-scroll font-mono text-text-muted mb-6 text-sm md:text-base bg-white/5 px-4 py-2 rounded-lg border border-brand-border">
+    // ceo_handoff_partner.run()
+  </div>
+
+  <h1 class="reveal-on-scroll text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-text-primary mb-8 leading-tight tracking-tight">
+    El CEO no es bombero.<br>
+    <span class="italic text-brand-cyan">Es arquitecto.</span>
+  </h1>
+
+  <p class="reveal-on-scroll text-lg md:text-xl text-text-secondary max-w-2xl mb-10 leading-relaxed">
+    Recupera <span class="text-brand-gold font-semibold">20 horas a la semana</span> mientras nuestro equipo comercial externo califica, agenda y cierra por ti. No vendemos leads. Vendemos tiempo.
+  </p>
+
+  <div class="reveal-on-scroll flex flex-col sm:flex-row gap-4 mt-2">
+    <a href="#sistema" class="px-8 py-3 rounded-full bg-brand-cyan text-[#0A1628] font-semibold hover:scale-105 transition-transform shadow-lg shadow-brand-cyan/30">
+      Ver el sistema
+    </a>
+    <a href="https://ssaldanoc-creator.github.io/formulariogrid/" target="_blank" rel="noopener noreferrer" class="px-8 py-3 rounded-full border border-text-primary/20 text-text-primary hover:bg-text-primary/5 transition-all">
+      Agendar Discovery
+    </a>
+  </div>
+
+  <div class="mt-24 text-text-muted animate-bounce-slow">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="py-12 px-6 bg-black/40 backdrop-blur-md border-y border-brand-border">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="reveal-on-scroll text-center md:text-left md:border-r md:border-brand-border md:pr-8">
+      <div class="font-serif text-5xl md:text-6xl font-extrabold text-white tracking-tight">28<span class="text-brand-cyan">%</span></div>
+      <div class="text-text-secondary mt-3 text-sm leading-relaxed">del tiempo del ejecutivo se va en email y comunicación interna.</div>
+      <div class="font-mono text-[10px] text-text-muted uppercase tracking-[0.18em] mt-2">McKinsey Global Institute</div>
+    </div>
+    <div class="reveal-on-scroll text-center md:text-left md:border-r md:border-brand-border md:px-8">
+      <div class="font-serif text-5xl md:text-6xl font-extrabold text-white tracking-tight">23 <span class="text-brand-cyan">min</span></div>
+      <div class="text-text-secondary mt-3 text-sm leading-relaxed">para recuperar foco después de una sola interrupción.</div>
+      <div class="font-mono text-[10px] text-text-muted uppercase tracking-[0.18em] mt-2">Mark, G. · UC Irvine</div>
+    </div>
+    <div class="reveal-on-scroll text-center md:text-left md:pl-8">
+      <div class="font-serif text-5xl md:text-6xl font-extrabold text-white tracking-tight">17<span class="text-brand-cyan">%</span></div>
+      <div class="text-text-secondary mt-3 text-sm leading-relaxed">del journey de compra B2B se pasa hablando con vendedores.</div>
+      <div class="font-mono text-[10px] text-text-muted uppercase tracking-[0.18em] mt-2">Gartner B2B Buying Report</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO / ABOUT -->
+<section id="diagnostico" class="py-24 px-6 bg-black/60 backdrop-blur-md border-b border-brand-border relative overflow-hidden">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <div class="reveal-on-scroll relative group order-2 md:order-1">
+      <div class="absolute inset-0 bg-brand-cream/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      <div class="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden border border-brand-border rotate-2 group-hover:rotate-0 transition-transform duration-500 shadow-2xl">
+        <img src="hero.jpg" alt="Operación comercial externa" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-md p-4 rounded-xl border border-brand-border transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+          <div class="flex items-center gap-3">
+            <img src="logo.png" alt="" class="w-12 h-12 object-contain logo-blend">
+            <div>
+              <p class="text-text-primary text-sm font-medium">GRID Expert Advisors LLC</p>
+              <p class="text-xs text-text-muted">Operación comercial externa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal-on-scroll order-1 md:order-2 space-y-8">
+      <div class="inline-block px-4 py-1.5 rounded-full border border-brand-cream/30 bg-brand-cream/5 text-brand-cream text-xs font-mono uppercase tracking-[0.18em]">
+        Diagnóstico antes que pitch
+      </div>
+      <h2 class="text-4xl md:text-5xl font-serif text-white leading-tight">
+        Diagnosticamos.<br>
+        <span class="text-text-secondary italic">No vendemos servicios.</span>
+      </h2>
+      <div class="space-y-6 text-text-secondary text-lg leading-relaxed">
+        <p>
+          GRID es una agencia de infraestructura comercial para CEOs y founders. En tres meses montamos el stack que tu empresa debió tener desde el día uno: <span class="text-white">CRM</span>, <span class="text-white">setters</span>, <span class="text-white">closers</span>, <span class="text-white">SOPs</span>, <span class="text-white">dashboards</span> y <span class="text-white">métricas vivas</span>.
+        </p>
+        <p>
+          No sólo te entregamos manuales. Te entregamos un equipo operando, un sistema documentado y una garantía contractual: Hacemos que resulte dentro del plazo establecido.
+        </p>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row gap-8 sm:items-center border-t border-brand-border">
+        <div class="font-serif text-2xl text-white italic opacity-80">GRID<span class="text-brand-cyan">·</span></div>
+        <div class="flex gap-4">
+          <a href="#" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:bg-white/5 transition-all" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="https://www.instagram.com/sebasaldanoc/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:bg-white/5 transition-all" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a href="https://wa.me/50670400607?text=Hola%20GRID,%20vengo%20de%20la%20web%20y%20quiero%20agendar%20un%20discovery" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:bg-white/5 transition-all" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+          <a href="mailto:info@gridexpertadvisors.com" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:bg-white/5 transition-all" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SISTEMA / SERVICES -->
+<section id="sistema" class="py-24 px-6 max-w-6xl mx-auto">
+  <div class="reveal-on-scroll text-center mb-16">
+    <span class="font-mono text-brand-cream text-xs tracking-[0.20em] uppercase mb-3 block font-semibold">— El sistema —</span>
+    <h2 class="text-4xl md:text-5xl font-serif text-white mb-3">Stack integrado, no oferta de bolsa.</h2>
+    <p class="text-text-muted mt-4 max-w-xl mx-auto">Cuatro componentes. Un solo handoff. Cero piezas sueltas.</p>
+    <div class="h-1 w-20 bg-brand-cream mx-auto rounded-full mt-6"></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+
+    <!-- WIDE: CRM + Pipeline -->
+    <div class="reveal-on-scroll md:col-span-2 group relative bg-white/5 backdrop-blur-md border border-brand-border rounded-[2rem] p-8 overflow-hidden hover:border-brand-cream/30 hover:bg-white/[0.07] transition-all duration-300">
+      <svg class="absolute top-4 right-4 w-4 h-4 text-white/10 group-hover:text-brand-cream/50 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22 2v6h-2V4h-4V2h6zM2 22v-6h2v4h4v2H2z"></path>
+      </svg>
+      <div class="absolute inset-0 bg-gradient-to-br from-brand-cream/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col md:flex-row gap-8 md:items-center h-full">
+        <div class="w-16 h-16 rounded-2xl bg-brand-cream/10 flex items-center justify-center text-brand-cream shrink-0 border border-brand-cream/10 shadow-lg shadow-brand-cream/5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-2xl font-serif font-medium text-white mb-2">CRM + Pipeline calibrado</h3>
+          <p class="text-text-secondary mb-6 leading-relaxed">HubSpot configurado con BANT scoring, automatizaciones de follow-up y dashboards de cohorte. El lead entra, se califica y llega al closer con diagnóstico.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs font-mono rounded-full bg-white/5 border border-brand-border text-white group-hover:bg-brand-cream/20 group-hover:border-brand-cream/20 group-hover:text-brand-cream transition-colors">HubSpot</span>
+            <span class="px-3 py-1 text-xs font-mono rounded-full bg-white/5 border border-brand-border text-white group-hover:bg-brand-cream/20 group-hover:border-brand-cream/20 group-hover:text-brand-cream transition-colors">BANT</span>
+            <span class="px-3 py-1 text-xs font-mono rounded-full bg-white/5 border border-brand-border text-white group-hover:bg-brand-cream/20 group-hover:border-brand-cream/20 group-hover:text-brand-cream transition-colors">Lead Scoring</span>
+            <span class="px-3 py-1 text-xs font-mono rounded-full bg-white/5 border border-brand-border text-white group-hover:bg-brand-cream/20 group-hover:border-brand-cream/20 group-hover:text-brand-cream transition-colors">Automation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TALL: Equipo Comercial -->
+    <div class="reveal-on-scroll md:row-span-2 group relative bg-white/5 backdrop-blur-md border border-brand-border rounded-[2rem] p-8 overflow-hidden hover:border-brand-gold/30 hover:bg-white/[0.07] transition-all duration-300 flex flex-col">
+      <svg class="absolute top-4 right-4 w-4 h-4 text-white/10 group-hover:text-brand-gold/50 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22 2v6h-2V4h-4V2h6zM2 22v-6h2v4h4v2H2z"></path>
+      </svg>
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col h-full">
+        <div class="w-16 h-16 rounded-2xl bg-brand-gold/10 flex items-center justify-center text-brand-gold mb-6 border border-brand-gold/10 shadow-lg shadow-brand-gold/5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h3 class="text-2xl font-serif font-medium text-white mb-4">Equipo Comercial Externo</h3>
+        <p class="text-text-secondary mb-8 flex-1 leading-relaxed">Setters y closers especializados en B2B high-ticket. Tu closer solo habla con prospectos calificados con BANT. Cero llamadas frías, cero desgaste.</p>
+        <div class="mt-auto space-y-6">
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs font-mono text-text-muted uppercase tracking-wider"><span>Lead a cita</span><span class="text-brand-gold">&gt; 25%</span></div>
+            <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+              <div class="h-full bg-brand-gold w-[85%] shadow-[0_0_10px_rgba(184,137,61,0.5)]"></div>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs font-mono text-text-muted uppercase tracking-wider"><span>Respuesta a lead</span><span class="text-white">&lt; 5 min</span></div>
+            <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+              <div class="h-full bg-brand-gold w-[95%] opacity-70"></div>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs font-mono text-text-muted uppercase tracking-wider"><span>Close rate vs baseline</span><span class="text-text-muted">+42%</span></div>
+            <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+              <div class="h-full bg-brand-gold w-[70%] opacity-40"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMALL: Dashboards -->
+    <div class="reveal-on-scroll group relative bg-white/5 backdrop-blur-md border border-brand-border rounded-[2rem] p-8 overflow-hidden hover:border-brand-cyan/30 hover:bg-white/[0.07] transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-tr from-brand-cyan/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      <div class="relative z-10">
+        <div class="flex items-start justify-between mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-brand-cyan/10 flex items-center justify-center text-brand-cyan border border-brand-cyan/10 shadow-lg shadow-brand-cyan/5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+          </div>
+          <svg class="text-white/10 group-hover:text-brand-cyan transition-colors transform group-hover:-translate-y-1 group-hover:translate-x-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </div>
+        <h3 class="text-xl font-serif font-medium text-white mb-2">Dashboards en vivo</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Métricas de pipeline, cohorte y velocity actualizadas en tiempo real. El CEO revisa una vez por semana, no construye reportes.</p>
+      </div>
+    </div>
+
+    <!-- SMALL: SOPs -->
+    <div class="reveal-on-scroll group relative bg-white/5 backdrop-blur-md border border-brand-border rounded-[2rem] p-8 overflow-hidden hover:border-brand-cyan/30 hover:bg-white/[0.07] transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-tr from-brand-cyan/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      <div class="relative z-10">
+        <div class="flex items-start justify-between mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-brand-cyan/10 flex items-center justify-center text-brand-cyan border border-brand-cyan/10 shadow-lg shadow-brand-cyan/5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg>
+          </div>
+          <svg class="text-white/10 group-hover:text-brand-cyan transition-colors transform group-hover:-translate-y-1 group-hover:translate-x-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </div>
+        <h3 class="text-xl font-serif font-medium text-white mb-2">SOPs documentados</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Playbooks de scripts, objeciones, follow-up y onboarding. Heredas un sistema validado, no construyes desde cero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK / Code Terminal -->
+<section class="py-24 bg-black/60 backdrop-blur-md border-y border-brand-border">
+  <div class="reveal-on-scroll max-w-5xl mx-auto px-6 text-center">
+    <span class="font-mono text-brand-cream text-xs tracking-[0.20em] uppercase mb-3 block font-semibold">— Stack —</span>
+    <h3 class="text-3xl md:text-4xl font-serif text-white mb-12">Seis sistemas. Una sola entrega.</h3>
+
+    <div class="relative mx-auto max-w-3xl">
+      <div class="bg-[#000] rounded-t-2xl border-t-[1px] border-x-[1px] border-white/20 p-2 shadow-2xl">
+        <div class="bg-[#0a0a0a] rounded-lg h-64 md:h-80 overflow-hidden relative flex flex-col items-start justify-start border border-brand-border">
+          <div class="absolute top-0 w-full h-8 bg-[#1a1a1a] flex items-center px-4 gap-2 border-b border-brand-border z-10">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <div class="ml-4 font-mono text-[10px] text-text-muted tracking-wide">gridexpertadvisors.com · sistema.ts</div>
+          </div>
+          <div id="code-terminal" class="text-left font-mono text-sm md:text-base space-y-1 p-8 w-full opacity-90 overflow-y-auto mt-10 h-full scrollbar-none">
+            <span class="text-brand-cream animate-pulse">_</span>
+          </div>
+        </div>
+      </div>
+      <div class="h-4 md:h-5 bg-[#1a1a1a] rounded-b-2xl mx-auto w-[102%] shadow-xl border-b border-white/10 relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-black/40 rounded-b-lg"></div>
+      </div>
+      <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-brand-cream/10 blur-[60px] rounded-full pointer-events-none"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP / TIMELINE -->
+<section id="roadmap" class="py-24 px-6 max-w-2xl mx-auto">
+  <div class="reveal-on-scroll text-center mb-16">
+    <span class="font-mono text-brand-cream text-xs tracking-[0.20em] uppercase mb-3 block font-semibold">— Implementación · 3 meses —</span>
+    <h2 class="text-3xl md:text-4xl font-serif text-white">Del caos a la operación.</h2>
+    <p class="text-text-muted mt-3">Roadmap por fases. Cada mes con entregable verificable.</p>
+  </div>
+
+  <div class="relative pl-8 sm:pl-10 space-y-12">
+    <div class="absolute left-0 top-2 bottom-0 w-px bg-brand-border md:left-2"></div>
+
+    <!-- Mes 1 -->
+    <div class="reveal-on-scroll relative group">
+      <div class="absolute -left-[39px] md:-left-[37px] top-5 w-5 h-5 rounded-full border-4 border-brand-bg bg-brand-cream shadow-[0_0_10px_rgba(247,226,192,0.5)] group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(247,226,192,0.8)] transition-all duration-300 z-10"></div>
+      <div class="relative">
+        <div class="inline-block px-4 py-1.5 rounded-full font-bold mb-4 text-sm tracking-wide bg-brand-cream text-black shadow-lg shadow-brand-cream/20 group-hover:shadow-brand-cream/40 group-hover:-translate-y-1 transition-all duration-300">
+          Mes 1
+        </div>
+        <div class="relative bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-brand-border group-hover:border-brand-cream/30 transition-all duration-300 group-hover:bg-white/[0.08] group-hover:translate-x-2 overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-cream/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <h3 class="text-xl font-serif font-bold text-white mb-1 relative z-10">Fundación</h3>
+          <p class="text-text-secondary mb-4 relative z-10 flex items-center gap-2">
+            Stack + SOPs + onboarding del equipo
+            <span class="w-1 h-1 rounded-full bg-brand-cream"></span>
+            <span class="text-xs text-brand-cream font-mono uppercase tracking-wider">Día 30</span>
+          </p>
+          <p class="text-text-muted text-sm leading-relaxed relative z-10">
+            El CEO sale de la operación diaria. CRM configurado, equipo onboardeado, war room operativo, primeros leads tocando el pipeline.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mes 2 -->
+    <div class="reveal-on-scroll relative group">
+      <div class="absolute -left-[39px] md:-left-[37px] top-5 w-5 h-5 rounded-full border-4 border-brand-bg bg-brand-gold group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(184,137,61,0.8)] transition-all duration-300 z-10"></div>
+      <div class="relative">
+        <div class="inline-block px-4 py-1.5 rounded-full font-bold mb-4 text-sm tracking-wide bg-brand-gold text-black group-hover:shadow-lg group-hover:shadow-brand-gold/20 group-hover:-translate-y-1 transition-all duration-300">
+          Mes 2
+        </div>
+        <div class="relative bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-brand-border group-hover:border-brand-gold/30 transition-all duration-300 group-hover:bg-white/[0.08] group-hover:translate-x-2 overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <h3 class="text-xl font-serif font-bold text-white mb-1 relative z-10">Motor + Amplificación</h3>
+          <p class="text-text-secondary mb-4 relative z-10">Dashboards en vivo · IA en research y follow-up</p>
+          <p class="text-text-muted text-sm leading-relaxed relative z-10">
+            Métricas en tiempo real. El equipo opera sin firma del CEO. Primer cohorte cerrada con diagnóstico documentado. La velocity comercial sube: research con IA, follow-up automatizado y reportes automáticos. El sistema escala sin sumar headcount al equipo del cliente.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mes 3 -->
+    <div class="reveal-on-scroll relative group">
+      <div class="absolute -left-[39px] md:-left-[37px] top-5 w-5 h-5 rounded-full border-4 border-brand-bg bg-white/30 group-hover:bg-white group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] transition-all duration-300 z-10"></div>
+      <div class="relative">
+        <div class="inline-block px-4 py-1.5 rounded-full font-bold mb-4 text-sm tracking-wide bg-white/10 text-white group-hover:bg-white group-hover:text-black group-hover:-translate-y-1 transition-all duration-300">
+          Mes 3
+        </div>
+        <div class="relative bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-brand-border group-hover:border-white/30 transition-all duration-300 group-hover:bg-white/[0.08] group-hover:translate-x-2 overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <h3 class="text-xl font-serif font-bold text-white mb-1 relative z-10">Optimización</h3>
+          <p class="text-text-secondary mb-4 relative z-10">Calibración data-driven · handoff completo</p>
+          <p class="text-text-muted text-sm leading-relaxed relative z-10">
+            El sistema aprende. El CEO solo revisa. Decisión: continuar con GRID o internalizar el equipo (heredas todo el sistema).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTÍA -->
+<section class="py-16 px-6 max-w-5xl mx-auto">
+  <div class="reveal-on-scroll relative bg-gradient-to-br from-brand-gold/15 via-brand-card to-brand-bg border border-brand-gold/30 rounded-[2rem] p-8 md:p-12 overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      <div class="md:col-span-2">
+        <span class="font-mono text-brand-gold text-xs tracking-[0.20em] uppercase mb-3 block font-semibold">— Garantía contractual —</span>
+        <h3 class="text-3xl md:text-4xl font-serif text-text-primary mb-4">Cero riesgo operativo.</h3>
+        <p class="text-text-secondary text-lg leading-relaxed">
+          Dejamos operativa la estructura comercial dentro del plazo establecido. Hacemos que resulte. Cláusula firmada en el contrato.
+        </p>
+      </div>
+      <div class="text-center md:text-right">
+        <div class="inline-block border-2 border-brand-gold text-brand-gold font-mono uppercase tracking-[0.18em] px-6 py-4 rounded-md shadow-lg shadow-brand-gold/10">
+          <div class="font-serif font-extrabold text-3xl text-text-primary leading-none mb-1">90 días</div>
+          <div class="text-xs">blindados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo" class="py-24 px-6 max-w-6xl mx-auto">
+  <div class="reveal-on-scroll text-center mb-16">
+    <span class="font-mono text-brand-cream text-xs tracking-[0.20em] uppercase mb-3 block font-semibold">— Quién lo entrega —</span>
+    <h2 class="text-3xl md:text-4xl font-serif text-white">Cinco personas. Una sola operación.</h2>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <div class="reveal-on-scroll group">
+      <div class="aspect-square rounded-2xl bg-white/5 border border-brand-border mb-4 group-hover:border-brand-cyan group-hover:shadow-lg group-hover:shadow-brand-cyan/30 group-hover:-translate-y-1 transition-all duration-500 relative overflow-hidden">
+        <img src="team/alexander.jpg" alt="Alexander Vilchez" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+      <h4 class="font-serif font-bold text-white text-sm">Alexander Vilchez</h4>
+      <p class="font-mono text-[10px] text-text-muted uppercase tracking-[0.16em] mt-1">Director Ejecutivo</p>
+    </div>
+    <div class="reveal-on-scroll group">
+      <div class="aspect-square rounded-2xl bg-white/5 border border-brand-border mb-4 group-hover:border-brand-cyan group-hover:shadow-lg group-hover:shadow-brand-cyan/30 group-hover:-translate-y-1 transition-all duration-500 relative overflow-hidden">
+        <img src="team/sebastian.jpg" alt="Sebastián Saldaño" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+      <h4 class="font-serif font-bold text-white text-sm">Sebastián Saldaño</h4>
+      <p class="font-mono text-[10px] text-text-muted uppercase tracking-[0.16em] mt-1">Gerente General</p>
+    </div>
+    <div class="reveal-on-scroll group">
+      <div class="aspect-square rounded-2xl bg-white/5 border border-brand-border mb-4 group-hover:border-brand-cyan group-hover:shadow-lg group-hover:shadow-brand-cyan/30 group-hover:-translate-y-1 transition-all duration-500 relative overflow-hidden">
+        <img src="team/noelia.jpg" alt="Noelia Aragón" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+      <h4 class="font-serif font-bold text-white text-sm">Noelia Aragón</h4>
+      <p class="font-mono text-[10px] text-text-muted uppercase tracking-[0.16em] mt-1">Gerencia Comercial</p>
+    </div>
+    <div class="reveal-on-scroll group">
+      <div class="aspect-square rounded-2xl bg-white/5 border border-brand-border mb-4 group-hover:border-brand-cyan group-hover:shadow-lg group-hover:shadow-brand-cyan/30 group-hover:-translate-y-1 transition-all duration-500 relative overflow-hidden">
+        <img src="team/paula.jpg" alt="Paula Vargas" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+      <h4 class="font-serif font-bold text-white text-sm">Paula Vargas</h4>
+      <p class="font-mono text-[10px] text-text-muted uppercase tracking-[0.16em] mt-1">Líder de Closers</p>
+    </div>
+    <div class="reveal-on-scroll group">
+      <div class="aspect-square rounded-2xl bg-white/5 border border-brand-border mb-4 group-hover:border-brand-cyan group-hover:shadow-lg group-hover:shadow-brand-cyan/30 group-hover:-translate-y-1 transition-all duration-500 relative overflow-hidden">
+        <img src="team/joel.jpg" alt="Joel Granados" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+      <h4 class="font-serif font-bold text-white text-sm">Joel Granados</h4>
+      <p class="font-mono text-[10px] text-text-muted uppercase tracking-[0.16em] mt-1">TI · Sistemas</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN / PRICING -->
+<section id="inversion" class="py-20 px-6 bg-black/60 backdrop-blur-sm">
+  <div class="reveal-on-scroll max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="font-mono text-brand-cream text-xs tracking-[0.20em] uppercase mb-3 block font-semibold">— Inversión —</span>
+      <h2 class="text-3xl md:text-4xl font-serif text-white mb-3">Dos tiers. Cero gasto fijo.</h2>
+      <p class="text-text-muted">Componente variable ligado a tu facturación. Misma mesa, mismo lado.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-3xl mx-auto">
+      <!-- Core (highlighted) -->
+      <div class="bg-gradient-to-b from-brand-cyan/10 to-brand-card backdrop-blur-xl rounded-[2rem] p-8 border-2 border-brand-cyan/40 relative md:scale-105 shadow-2xl shadow-brand-cyan/10">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-brand-cyan text-[#0A1628] text-[10px] font-mono uppercase tracking-[0.18em] rounded-full font-semibold whitespace-nowrap shadow-lg shadow-brand-cyan/40 z-10">Más elegido</div>
+        <div class="font-mono text-xs uppercase tracking-[0.18em] text-brand-cyan mb-4">Tier Core</div>
+        <div class="font-mono text-xs text-brand-cyan uppercase tracking-wider mb-6">3 meses</div>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li class="flex items-start gap-2"><span class="text-brand-cyan mt-0.5">✓</span> Setter <strong class="text-text-primary">+ Closer</strong> dedicados</li>
+          <li class="flex items-start gap-2"><span class="text-brand-cyan mt-0.5">✓</span> SOPs heredados</li>
+          <li class="flex items-start gap-2"><span class="text-brand-cyan mt-0.5">✓</span> Dashboards en vivo</li>
+          <li class="flex items-start gap-2"><span class="text-brand-cyan mt-0.5">✓</span> Garantía contractual</li>
+        </ul>
+      </div>
+
+      <!-- Full -->
+      <div class="bg-brand-card/80 backdrop-blur-xl rounded-[2rem] p-8 border border-brand-border relative overflow-hidden hover:border-brand-gold/30 transition-colors">
+        <div class="font-mono text-xs uppercase tracking-[0.18em] text-text-muted mb-4">Tier Full</div>
+        <div class="font-mono text-xs text-text-muted uppercase tracking-wider mb-6">3 meses</div>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li class="flex items-start gap-2"><span class="text-brand-gold mt-0.5">✓</span> Equipo completo</li>
+          <li class="flex items-start gap-2"><span class="text-brand-gold mt-0.5">✓</span> IA en research y follow-up</li>
+          <li class="flex items-start gap-2"><span class="text-brand-gold mt-0.5">✓</span> Dashboards custom</li>
+          <li class="flex items-start gap-2"><span class="text-brand-gold mt-0.5">✓</span> Calibración semanal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="https://ssaldanoc-creator.github.io/formulariogrid/" target="_blank" rel="noopener noreferrer" class="inline-block px-10 py-4 bg-brand-cyan text-[#0A1628] font-bold rounded-xl hover:shadow-xl hover:shadow-brand-cyan/40 transition-all transform hover:scale-[1.02] shadow-lg shadow-brand-cyan/20">
+        Agendar Discovery → 30 min
+      </a>
+      <p class="text-xs text-text-muted mt-4 font-mono uppercase tracking-[0.18em]">Pricing y alcance se definen en discovery call</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contacto" class="pt-20 pb-10 px-6 border-t border-brand-border bg-brand-bg">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-10 mb-16 reveal-on-scroll">
+      <div class="flex gap-6">
+        <div class="w-24 h-24 rounded-full bg-[#111F37] flex flex-col items-center justify-center border border-brand-border hover:border-brand-cream/50 transition-colors group">
+          <span class="text-2xl font-serif font-bold text-white group-hover:text-brand-cream transition-colors">6<span class="text-brand-cream">·</span></span>
+          <span class="text-[9px] text-text-muted uppercase tracking-widest mt-1">Sistemas</span>
+        </div>
+        <div class="w-24 h-24 rounded-full bg-brand-cream flex flex-col items-center justify-center text-black shadow-lg shadow-brand-cream/20 hover:scale-105 transition-transform cursor-default">
+          <span class="text-3xl font-serif font-bold leading-none">90</span>
+          <span class="text-[9px] text-black/60 uppercase tracking-widest mt-1">Días</span>
+        </div>
+        <div class="w-24 h-24 rounded-full bg-[#111F37] flex flex-col items-center justify-center border border-brand-border hover:border-brand-cyan/50 transition-colors group">
+          <span class="text-2xl font-serif font-bold text-white group-hover:text-brand-cyan transition-colors">−70%</span>
+          <span class="text-[9px] text-text-muted uppercase tracking-widest mt-1">Tiempo CEO</span>
+        </div>
+      </div>
+
+      <div class="text-center md:text-right">
+        <h2 class="text-3xl md:text-4xl font-serif text-white mb-3">¿Listo para salir de la bandeja?</h2>
+        <a href="mailto:info@gridexpertadvisors.com" class="text-brand-cream text-lg hover:underline decoration-brand-cream/50 underline-offset-4">info@gridexpertadvisors.com</a>
+        <div class="font-mono text-[10px] text-text-muted uppercase tracking-[0.18em] mt-2">30 min · cero pitch · solo discovery</div>
+      </div>
+    </div>
+
+    <!-- ABOUT / LEGAL BLOCK -->
+    <div id="about-divider" class="grid grid-cols-1 md:grid-cols-3 gap-10 py-10 border-t border-brand-border reveal-on-scroll">
+      <div>
+        <img src="logo.png" alt="GRID Expert Advisors" class="w-32 h-32 object-contain logo-blend mb-4 -ml-2">
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Infraestructura comercial externa para CEOs y founders. Diagnosticamos, montamos el stack, y operamos por ti los primeros 90 días.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-mono text-[10px] text-brand-cream uppercase tracking-[0.18em] font-semibold mb-4">— About us —</div>
+        <div class="text-text-primary text-sm font-medium mb-1">GRID Expert Advisors LLC</div>
+        <address class="text-text-secondary text-sm not-italic leading-relaxed">
+          30 N Gould St Ste N<br>
+          Sheridan, WY 82801<br>
+          United States
+        </address>
+        <div class="font-mono text-[10px] text-text-muted uppercase tracking-[0.18em] mt-3">Wyoming Limited Liability Company</div>
+      </div>
+
+      <div>
+        <div class="font-mono text-[10px] text-brand-cream uppercase tracking-[0.18em] font-semibold mb-4">— Contacto —</div>
+        <a href="mailto:info@gridexpertadvisors.com" class="block text-text-primary text-sm hover:text-brand-cream transition-colors mb-2">info@gridexpertadvisors.com</a>
+        <a href="https://gridexpertadvisors.com" class="block text-text-secondary text-sm hover:text-white transition-colors mb-4">gridexpertadvisors.com</a>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:border-white/30 transition-all" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="https://www.instagram.com/sebasaldanoc/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:border-white/30 transition-all" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a href="https://wa.me/50670400607?text=Hola%20GRID,%20vengo%20de%20la%20web%20y%20quiero%20agendar%20un%20discovery" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:border-white/30 transition-all" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+          <a href="mailto:info@gridexpertadvisors.com" class="w-9 h-9 rounded-full border border-brand-border flex items-center justify-center text-text-muted hover:text-white hover:border-white/30 transition-all" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-brand-border text-text-muted text-sm gap-4">
+      <div class="flex items-center gap-3 flex-wrap justify-center">
+        <p>© 2026 GRID Expert Advisors LLC</p>
+        <span class="font-mono text-[10px] tracking-[0.18em]">· All rights reserved</span>
+      </div>
+      <p class="font-serif italic text-text-secondary text-center md:text-right">"Roma no ganó porque fueran más fuertes. Ganó porque tenía manuales."</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<!-- BÚHO 8-BIT -->
+<div id="flying-owl" class="flying-owl" aria-hidden="true">
+  <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" class="owl-svg">
+    <!-- Cuerpo (cuerpo y plumas blancas) -->
+    <g class="owl-body">
+      <!-- Tufts (orejas pointy) -->
+      <rect x="3" y="0" width="1" height="1" fill="#F4F1EB"/>
+      <rect x="10" y="0" width="1" height="1" fill="#F4F1EB"/>
+      <rect x="2" y="1" width="3" height="1" fill="#F4F1EB"/>
+      <rect x="9" y="1" width="3" height="1" fill="#F4F1EB"/>
+      <!-- Cabeza -->
+      <rect x="1" y="2" width="12" height="1" fill="#F4F1EB"/>
+      <rect x="0" y="3" width="14" height="1" fill="#F4F1EB"/>
+      <!-- Filas de ojos: dejo huecos en cols 3-4 y 9-10 (los ojos van encima) -->
+      <rect x="0" y="4" width="3" height="1" fill="#F4F1EB"/>
+      <rect x="5" y="4" width="4" height="1" fill="#F4F1EB"/>
+      <rect x="11" y="4" width="3" height="1" fill="#F4F1EB"/>
+      <rect x="0" y="5" width="3" height="1" fill="#F4F1EB"/>
+      <rect x="5" y="5" width="4" height="1" fill="#F4F1EB"/>
+      <rect x="11" y="5" width="3" height="1" fill="#F4F1EB"/>
+      <rect x="0" y="6" width="3" height="1" fill="#F4F1EB"/>
+      <rect x="5" y="6" width="4" height="1" fill="#F4F1EB"/>
+      <rect x="11" y="6" width="3" height="1" fill="#F4F1EB"/>
+      <!-- Bajo los ojos (mejillas) -->
+      <rect x="1" y="7" width="12" height="1" fill="#F4F1EB"/>
+      <!-- Hombros con hueco para el beak en cols 6-7 -->
+      <rect x="2" y="8" width="4" height="1" fill="#F4F1EB"/>
+      <rect x="8" y="8" width="4" height="1" fill="#F4F1EB"/>
+      <!-- Cuerpo / panza -->
+      <rect x="3" y="9" width="8" height="1" fill="#F4F1EB"/>
+      <rect x="3" y="10" width="8" height="1" fill="#F4F1EB"/>
+      <rect x="3" y="11" width="8" height="1" fill="#F4F1EB"/>
+      <rect x="4" y="12" width="6" height="1" fill="#F4F1EB"/>
+      <!-- Patas -->
+      <rect x="4" y="13" width="2" height="1" fill="#F4F1EB"/>
+      <rect x="8" y="13" width="2" height="1" fill="#F4F1EB"/>
+    </g>
+
+    <!-- Ojos dorados 2x3 -->
+    <g class="owl-eyes">
+      <rect x="3" y="4" width="2" height="3" fill="#FFB800"/>
+      <rect x="9" y="4" width="2" height="3" fill="#FFB800"/>
+      <!-- Beak -->
+      <rect x="6" y="8" width="2" height="1" fill="#FFB800"/>
+    </g>
+
+    <!-- Párpados (overlay para parpadear) -->
+    <g class="owl-blink" opacity="0">
+      <rect x="3" y="4" width="2" height="3" fill="#F4F1EB"/>
+      <rect x="9" y="4" width="2" height="3" fill="#F4F1EB"/>
+    </g>
+
+    <!-- Alas extendidas -->
+    <g class="owl-wings">
+      <rect x="0" y="7" width="1" height="1" fill="#F4F1EB"/>
+      <rect x="13" y="7" width="1" height="1" fill="#F4F1EB"/>
+      <rect x="0" y="8" width="2" height="1" fill="#F4F1EB"/>
+      <rect x="12" y="8" width="2" height="1" fill="#F4F1EB"/>
+      <rect x="1" y="9" width="2" height="1" fill="#F4F1EB"/>
+      <rect x="11" y="9" width="2" height="1" fill="#F4F1EB"/>
+    </g>
+  </svg>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Tech canvas animation (circuit grid + matrix chars)
+  const canvas = document.getElementById('tech-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  let grid = 50;
+  let runners = [];
+  let matrixChars = [];
+  let mouse = { x: -100, y: -100 };
+
+  // GRID brand palette: cream, gold, red, soft cream
+  const colors = [
+    'rgba(244, 241, 235, 0.3)',
+    'rgba(255, 184, 0, 0.25)',
+    'rgba(0, 217, 255, 0.35)',
+    'rgba(139, 147, 165, 0.2)'
+  ];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  class Runner {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.floor(Math.random() * (w/grid)) * grid;
+      this.y = Math.floor(Math.random() * (h/grid)) * grid;
+      const dir = Math.floor(Math.random() * 4);
+      this.speed = 0.25;
+      this.vx = (dir === 0 ? 1 : dir === 1 ? -1 : 0) * this.speed;
+      this.vy = (dir === 2 ? 1 : dir === 3 ? -1 : 0) * this.speed;
+      this.history = [];
+      this.maxHistory = Math.random() * 20 + 10;
+      this.life = Math.random() * 100 + 50;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.thickness = Math.random() > 0.8 ? 2 : 1;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x % grid === 0 && this.y % grid === 0) {
+        if (Math.random() < 0.15) {
+          if (this.vx !== 0) {
+            this.vx = 0;
+            this.vy = (Math.random() > 0.5 ? 1 : -1) * this.speed;
+          } else {
+            this.vy = 0;
+            this.vx = (Math.random() > 0.5 ? 1 : -1) * this.speed;
+          }
+        }
+      }
+      this.life--;
+      if (this.x < -grid || this.x > w+grid || this.y < -grid || this.y > h+grid || this.life <= 0) this.reset();
+      this.history.push({x: this.x, y: this.y});
+      if(this.history.length > this.maxHistory) this.history.shift();
+    }
+    draw() {
+      if(this.history.length < 2) return;
+      ctx.beginPath();
+      ctx.moveTo(this.history[0].x, this.history[0].y);
+      for(let i=1; i<this.history.length; i++) ctx.lineTo(this.history[i].x, this.history[i].y);
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = this.thickness;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = this.color;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgba(244, 241, 235, 0.4)';
+      ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3);
+    }
+  }
+
+  class MatrixChar {
+    constructor() { this.relocate(); }
+    relocate() {
+      this.x = Math.floor(Math.random() * (w/grid)) * grid + (grid/4);
+      this.y = Math.floor(Math.random() * (h/grid)) * grid + (grid/1.5);
+      this.val = Math.random() > 0.5 ? '1' : '0';
+      this.opacity = Math.random() * 0.05;
+    }
+    update() {
+      if (Math.random() < 0.005) this.relocate();
+      if (Math.random() < 0.01) this.val = this.val === '1' ? '0' : '1';
+    }
+    draw() {
+      ctx.fillStyle = `rgba(244, 241, 235, ${this.opacity})`;
+      ctx.font = '10px monospace';
+      ctx.fillText(this.val, this.x, this.y);
+    }
+  }
+
+  function init() {
+    resize();
+    runners = [];
+    matrixChars = [];
+    for (let i = 0; i < 40; i++) runners.push(new Runner());
+    for (let i = 0; i < 80; i++) matrixChars.push(new MatrixChar());
+  }
+
+  window.addEventListener('resize', init);
+  init();
+
+  function animate() {
+    ctx.fillStyle = 'rgba(10, 22, 40, 0.15)';
+    ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(244, 241, 235, 0.015)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let x = 0; x <= w; x += grid) { ctx.moveTo(x, 0); ctx.lineTo(x, h); }
+    for (let y = 0; y <= h; y += grid) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
+    ctx.stroke();
+    const mx = Math.floor(mouse.x / grid) * grid;
+    const my = Math.floor(mouse.y / grid) * grid;
+    if (mx >= 0 && my >= 0) {
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = 'rgba(0, 217, 255, 0.25)';
+      ctx.strokeStyle = 'rgba(0, 217, 255, 0.25)';
+      ctx.strokeRect(mx, my, grid, grid);
+      ctx.shadowBlur = 0;
+    }
+    matrixChars.forEach(m => { m.update(); m.draw(); });
+    runners.forEach(r => { r.update(); r.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Code terminal typing animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const term = document.getElementById('code-terminal');
+    if(!term) return;
+
+    const lines = [
+      [ {t:"import ", c:"text-brand-cream mr-2"}, {t:"{ Stack } ", c:"text-white"}, {t:"from ", c:"text-brand-cream mx-2"}, {t:"'@grid/sistema'", c:"text-brand-gold"}, {t:";", c:"text-white"} ],
+      [ {t:"", c:""} ],
+      [ {t:"const ", c:"text-brand-cream mr-2"}, {t:"stack ", c:"text-brand-cyan"}, {t:"= [", c:"text-white ml-2"} ],
+      [ {t:"  'HubSpot CRM'", c:"text-brand-gold pl-4"}, {t:",", c:"text-white"} ],
+      [ {t:"  'Slack War Room'", c:"text-brand-gold pl-4"}, {t:",", c:"text-white"} ],
+      [ {t:"  'BANT + CCP'", c:"text-brand-gold pl-4"}, {t:",", c:"text-white"} ],
+      [ {t:"  'Chris Voss Closing'", c:"text-brand-gold pl-4"}, {t:",", c:"text-white"} ],
+      [ {t:"  'Notion HQ'", c:"text-brand-gold pl-4"}, {t:",", c:"text-white"} ],
+      [ {t:"  'Live Dashboards'", c:"text-brand-gold pl-4"} ],
+      [ {t:"];", c:"text-white"} ],
+      [ {t:"", c:""} ],
+      [ {t:"// −70% tiempo del CEO. Cero gasto fijo.", c:"text-text-muted italic"} ],
+    ];
+
+    let lineIndex = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'w-2 h-5 bg-brand-cream inline-block align-middle animate-pulse ml-1 shadow-[0_0_10px_#F7E2C0]';
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          term.innerHTML = '';
+          term.appendChild(cursor);
+          setTimeout(typeNextLine, 500);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(term);
+
+    function typeNextLine() {
+      if (lineIndex >= lines.length) return;
+      const lineData = lines[lineIndex];
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'flex flex-wrap items-center';
+      term.insertBefore(lineDiv, cursor);
+      let tokenIndex = 0;
+      function typeNextToken() {
+        if (tokenIndex >= lineData.length) {
+          lineIndex++;
+          setTimeout(typeNextLine, 100);
+          return;
+        }
+        const token = lineData[tokenIndex];
+        const span = document.createElement('span');
+        span.className = token.c;
+        lineDiv.appendChild(span);
+        let charIndex = 0;
+        function typeChar() {
+          if (charIndex >= token.t.length) {
+            tokenIndex++;
+            typeNextToken();
+            return;
+          }
+          span.textContent += token.t[charIndex];
+          charIndex++;
+          setTimeout(typeChar, Math.random() * 20 + 5);
+        }
+        typeChar();
+      }
+      typeNextToken();
+    }
+
+    // Reveal on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+    // Mobile menu toggle
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if(btn && menu) {
+      btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
+    }
+
+    // Búho 8-bit: aparece en el hero llamando atención, se zambulle abajo,
+    // y aterriza posado en el border-t del bloque About parpadeando.
+    // DESACTIVADO temporalmente — para reactivar, borrar la línea siguiente.
+    (function initFlyingOwl() { return;
+      const owl = document.getElementById('flying-owl');
+      const aboutDivider = document.getElementById('about-divider');
+      if (!owl || !aboutDivider) return;
+
+      const owlSize = window.innerWidth < 640 ? 60 : 84;
+
+      // Estado inicial: posición fixed, top-center del viewport
+      owl.style.position = 'fixed';
+      owl.style.top = '18vh';
+      owl.style.left = '50%';
+      owl.style.transform = 'translateX(-50%)';
+
+      // Stage 1 (700ms): aparece + empieza a wigglear (atención)
+      setTimeout(() => {
+        owl.classList.add('visible', 'attention');
+      }, 700);
+
+      // Stage 2 (después de ~2s wiggle): se zambulle hacia abajo bien rápido
+      setTimeout(() => {
+        owl.classList.remove('attention');
+        owl.classList.add('diving');
+      }, 2700);
+
+      // Stage 3 (después del dive de 1s): se posa sobre el palito del About
+      setTimeout(() => {
+        const aboutAbsTop = aboutDivider.getBoundingClientRect().top + window.scrollY;
+        owl.classList.remove('diving');
+        owl.style.position = 'absolute';
+        owl.style.top = (aboutAbsTop - owlSize + 8) + 'px';
+        owl.style.left = '50%';
+        owl.style.transform = 'translateX(-50%)';
+        owl.classList.add('landed', 'perched');
+        // limpiar la clase landed después de la sacudida
+        setTimeout(() => owl.classList.remove('landed'), 500);
+      }, 3700);
+
+      // Si la página cambia de tamaño, recalcular la posición perched
+      window.addEventListener('resize', () => {
+        if (owl.classList.contains('perched')) {
+          const aboutAbsTop = aboutDivider.getBoundingClientRect().top + window.scrollY;
+          owl.style.top = (aboutAbsTop - owlSize + 8) + 'px';
+        }
+      });
+    })();
+  });
+</script>
+
+</body>
+</html>
