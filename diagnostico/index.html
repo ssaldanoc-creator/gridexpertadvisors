@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Dependencia del Fundador — GRID Expert Advisors</title>
+<meta name="description" content="Nueve bloques, tres minutos, un puntaje sobre 36. Mide en cuántas partes de tu operación todo se detiene cuando sales de la sala.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1D3A; --navy-deep:#071428; --navy-mid:#112040; --navy-card:#0E1E3A; --navy-light:#1A3060;
+    --gold:#C9A84C; --gold-bright:#E2C47A; --gold-pale:#F0DFA8;
+    --gold-dim:rgba(201,168,76,0.12); --gold-border:rgba(201,168,76,0.28); --gold-border-strong:rgba(201,168,76,0.6);
+    --white:#FFF; --w80:rgba(255,255,255,.80); --w55:rgba(255,255,255,.55); --w35:rgba(255,255,255,.35); --w10:rgba(255,255,255,.07);
+    --baja:#6FA88A; --baja-bg:rgba(111,168,138,.10);
+    --alta:#C9A84C; --alta-bg:rgba(201,168,76,.10);
+    --crit:#C96A4C; --crit-bg:rgba(201,106,76,.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy-deep); color:var(--w80);
+    font-family:'Montserrat',system-ui,-apple-system,sans-serif; font-weight:300; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important; scroll-behavior:auto !important;}}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif;}
+  em{font-style:italic; color:var(--gold-bright);}
+  strong{font-weight:600; color:var(--white);}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+  .narrow{max-width:760px;}
+  section{padding:88px 0;}
+  @media(max-width:768px){section{padding:60px 0;}}
+  :focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:2px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:rgba(7,20,40,.86); border-bottom:1px solid var(--gold-border);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px; gap:16px;}
+  .brand{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:22px; color:var(--white); letter-spacing:.02em; white-space:nowrap;}
+  .brand span{color:var(--gold-bright); font-style:italic; font-weight:500; font-size:14px; letter-spacing:.05em; margin-left:6px;}
+  .nav-tag{font-size:10px; letter-spacing:.32em; text-transform:uppercase; color:var(--w55); display:none;}
+  @media(min-width:820px){.nav-tag{display:block;}}
+  .nav-cta{border:1px solid var(--gold-border-strong); color:var(--gold-bright); padding:9px 18px; border-radius:2px;
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase; transition:.25s; white-space:nowrap;}
+  .nav-cta:hover{background:var(--gold); color:var(--navy-deep); border-color:var(--gold);}
+
+  /* HERO */
+  .hero{padding:96px 0 72px; position:relative; overflow:hidden;}
+  .hero::after{content:''; position:absolute; top:-220px; right:-180px; width:560px; height:560px; border-radius:50%;
+    background:radial-gradient(circle, rgba(201,168,76,.16), transparent 70%); pointer-events:none;}
+  .hero-inner{max-width:780px; position:relative; z-index:1;}
+  .eyebrow{display:flex; align-items:center; gap:14px; font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:22px;}
+  .eyebrow::before{content:''; width:32px; height:1px; background:var(--gold); flex:0 0 auto;}
+  .hero h1{font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(36px,5.6vw,62px); color:var(--white); line-height:1.1; margin-bottom:24px; text-wrap:balance;}
+  .hero h1 em{font-weight:500;}
+  .hero p.lede{font-size:17px; color:var(--w80); max-width:600px; margin-bottom:14px; font-weight:300;}
+  .hero .note{font-size:12.5px; letter-spacing:.04em; color:var(--w55); margin-top:20px; max-width:600px;}
+  .hero .note strong{color:var(--gold-pale); font-weight:500;}
+
+  .specs{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px; max-width:640px;}
+  @media(max-width:600px){.specs{grid-template-columns:1fr;}}
+  .spec{background:linear-gradient(160deg, var(--navy-light), var(--navy-mid)); border:1px solid var(--gold-border); border-top:2px solid var(--gold); padding:22px 20px;}
+  .spec .n{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; color:var(--gold); line-height:1; margin-bottom:8px;}
+  .spec .t{font-size:13px; color:var(--w80); font-weight:300;}
+
+  .btn-gold{display:inline-block; background:var(--gold); color:var(--navy-deep); font-weight:600; font-size:13px;
+    letter-spacing:.1em; text-transform:uppercase; padding:17px 34px; border-radius:2px; margin-top:30px;
+    transition:.25s; border:1px solid var(--gold); cursor:pointer; font-family:inherit;}
+  .btn-gold:hover{background:transparent; color:var(--gold-bright);}
+  .btn-ghost{display:inline-block; border:1px solid var(--gold-border-strong); color:var(--gold-bright); padding:15px 30px;
+    border-radius:2px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; transition:.25s; font-family:inherit; cursor:pointer; background:transparent;}
+  .btn-ghost:hover{background:var(--gold-dim);}
+
+  /* ESCALA */
+  .escala{background:var(--navy-mid); border-top:1px solid var(--gold-border); border-bottom:1px solid var(--gold-border);}
+  .escala .wrap{padding:44px 28px;}
+  .escala h2{font-family:'Cormorant Garamond',serif; font-weight:400; font-size:26px; color:var(--white); margin-bottom:8px;}
+  .escala .sub{font-size:14px; color:var(--w55); margin-bottom:26px; max-width:640px;}
+  .escala-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--gold-border); border:1px solid var(--gold-border);}
+  @media(max-width:760px){.escala-grid{grid-template-columns:repeat(2,1fr);}}
+  .esc{background:var(--navy-card); padding:20px 18px;}
+  .esc .v{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:26px; color:var(--gold); line-height:1; margin-bottom:8px;}
+  .esc .l{font-size:13px; color:var(--white); font-weight:500; margin-bottom:5px;}
+  .esc .d{font-size:12.5px; color:var(--w55); font-weight:300; line-height:1.5;}
+
+  /* TEST */
+  #test{background:var(--navy-deep);}
+  .test-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:12px;}
+  .test-head h2{font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(28px,3.6vw,44px); color:var(--white); line-height:1.15;}
+  .test-head .cuenta{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--w55); white-space:nowrap;}
+  .barra{height:2px; background:var(--w10); border-radius:2px; overflow:hidden; margin-bottom:34px;}
+  .barra span{display:block; height:100%; width:0%; background:var(--gold); transition:width .3s ease;}
+
+  .bloques{border:1px solid var(--gold-border); border-top:2px solid var(--gold); background:var(--navy-card);}
+  .bloque{display:grid; grid-template-columns:1fr 268px; gap:24px; align-items:center; padding:22px 26px; border-bottom:1px solid var(--gold-border);}
+  .bloque:last-child{border-bottom:none;}
+  .bloque.hecho{background:var(--navy-mid);}
+  @media(max-width:820px){
+    .bloque{grid-template-columns:1fr; gap:14px; padding:20px 18px;}
+  }
+  .bq-info .name{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:19px; color:var(--white); line-height:1.25; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .bq-info .num{font-family:'Montserrat',sans-serif; font-size:11px; font-weight:600; color:var(--gold); border:1px solid var(--gold-border-strong);
+    border-radius:2px; padding:2px 7px; letter-spacing:.06em; flex:0 0 auto;}
+  .bq-info .x2{font-family:'Montserrat',sans-serif; font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--navy-deep); background:var(--gold); border-radius:2px; padding:3px 7px;}
+  .bq-info .dim{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--w35); margin-top:7px;}
+  .bq-info .q{font-size:13.5px; color:var(--w80); margin-top:9px; font-weight:300; max-width:52ch;}
+
+  .seg{display:grid; grid-template-columns:repeat(4,1fr); gap:6px;}
+  .seg label{position:relative; display:block;}
+  .seg input{position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer;}
+  .seg .box{display:flex; align-items:center; justify-content:center; height:48px; border:1px solid var(--w10);
+    background:var(--navy-mid); color:var(--w55); font-family:'Cormorant Garamond',serif; font-weight:600; font-size:20px;
+    border-radius:2px; transition:.18s; cursor:pointer;}
+  .seg label:hover .box{border-color:var(--gold-border-strong); color:var(--gold-bright);}
+  .seg input:checked + .box{background:var(--gold); border-color:var(--gold); color:var(--navy-deep);}
+  .seg input:focus-visible + .box{outline:2px solid var(--gold-bright); outline-offset:2px;}
+  .seg-leyenda{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:6px;}
+  .seg-leyenda span{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--w35); text-align:center; line-height:1.3;}
+  @media(max-width:400px){.seg-leyenda span{font-size:8.5px;}}
+
+  /* BARRA FIJA */
+  .marcador{position:sticky; bottom:0; z-index:40; background:rgba(11,29,58,.94); backdrop-filter:blur(12px);
+    border-top:1px solid var(--gold-border-strong); padding:14px 0;}
+  .marcador .wrap{display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;}
+  .marcador .izq{display:flex; align-items:baseline; gap:14px;}
+  .marcador .p{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:30px; color:var(--gold); line-height:1;}
+  .marcador .p small{font-family:'Montserrat',sans-serif; font-size:13px; font-weight:400; color:var(--w55);}
+  .marcador .lab{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--w55);}
+  .marcador .btn-gold{margin-top:0; padding:13px 26px;}
+  .marcador .btn-gold:disabled{opacity:.4; cursor:not-allowed; background:var(--gold); color:var(--navy-deep);}
+
+  /* RESULTADO */
+  #resultado{display:none;}
+  .res-card{background:var(--navy-card); border:1px solid var(--gold-border-strong); border-top:2px solid var(--gold); padding:44px 40px; max-width:820px; margin:0 auto;}
+  @media(max-width:600px){.res-card{padding:30px 22px;}}
+  .res-top{display:flex; align-items:center; gap:28px; flex-wrap:wrap; padding-bottom:26px; border-bottom:1px solid var(--gold-border);}
+  .res-puntaje{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:64px; line-height:.9; color:var(--gold);}
+  .res-puntaje small{font-family:'Montserrat',sans-serif; font-size:16px; font-weight:400; color:var(--w35);}
+  .res-tramo .t{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:28px; line-height:1.1; margin-bottom:6px;}
+  .res-tramo .r{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--w55);}
+  .res-verdict{font-size:16px; color:var(--w80); line-height:1.75; margin:24px 0 0;}
+  .res-verdict strong{color:var(--gold-pale);}
+
+  .peores{margin-top:30px; border-top:1px solid var(--gold-border); padding-top:26px;}
+  .peores h4{font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;}
+  .peor{display:flex; align-items:flex-start; gap:14px; padding:13px 0; border-bottom:1px solid var(--gold-border);}
+  .peor:last-child{border-bottom:none;}
+  .peor .p{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:20px; color:var(--crit); flex:0 0 42px; text-align:center;}
+  .peor .n{font-size:14.5px; color:var(--white); font-weight:500;}
+  .peor .d{font-size:12.5px; color:var(--w55); margin-top:3px;}
+
+  .desglose{margin-top:26px;}
+  .desglose h4{font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
+  .dg-row{display:grid; grid-template-columns:1fr 74px 60px; gap:12px; align-items:center; padding:9px 0; border-bottom:1px solid var(--w10); font-size:13px;}
+  .dg-row:last-child{border-bottom:none;}
+  .dg-row .nm{color:var(--w80);}
+  .dg-bar{height:6px; background:var(--w10); border-radius:2px; overflow:hidden;}
+  .dg-bar i{display:block; height:100%; background:var(--gold); border-radius:2px;}
+  .dg-row .vl{text-align:right; font-size:12px; color:var(--w55); font-variant-numeric:tabular-nums;}
+
+  /* CAPTURA */
+  .captura{max-width:680px; margin:34px auto 0; background:var(--navy-card); border:1px solid var(--gold-border); border-top:2px solid var(--gold); padding:38px 36px;}
+  @media(max-width:600px){.captura{padding:28px 22px;}}
+  .captura h3{font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; color:var(--white); margin-bottom:10px;}
+  .captura .sub{font-size:14px; color:var(--w55); margin-bottom:26px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--w55); margin-bottom:8px;}
+  .field input{width:100%; background:var(--navy-mid); border:1px solid var(--w10); color:var(--white);
+    font-family:'Montserrat',sans-serif; font-size:14.5px; font-weight:400; padding:13px 14px; border-radius:2px; transition:.2s;}
+  .field input:focus{outline:none; border-color:var(--gold-border-strong); background:var(--navy-light);}
+  .field input.valid{border-color:var(--gold-border-strong);}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media(max-width:560px){.field-row{grid-template-columns:1fr;}}
+  .submit-btn{width:100%; background:var(--gold); color:var(--navy-deep); font-weight:600; font-size:13px; letter-spacing:.1em;
+    text-transform:uppercase; padding:17px; border:none; border-radius:2px; cursor:pointer; margin-top:6px; transition:.2s; font-family:inherit;}
+  .submit-btn:hover{background:var(--gold-bright);}
+  .submit-btn:disabled{opacity:.55; cursor:not-allowed;}
+  .form-foot{text-align:center; margin-top:20px; font-size:12px; color:var(--w35);}
+
+  /* ESTADOS FINALES */
+  #estadoAlto, #estadoBajo{display:none; max-width:760px; margin:34px auto 0; text-align:center;
+    background:var(--navy-card); border:1px solid var(--gold-border-strong); border-top:2px solid var(--gold); padding:46px 38px;}
+  @media(max-width:600px){#estadoAlto, #estadoBajo{padding:32px 22px;}}
+  .check{width:54px; height:54px; border:1px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;}
+  #estadoAlto h3, #estadoBajo h3{font-family:'Cormorant Garamond',serif; font-weight:500; font-size:28px; color:var(--white); margin-bottom:14px;}
+  #estadoAlto p, #estadoBajo p{font-size:14.5px; color:var(--w80); max-width:520px; margin:0 auto 22px;}
+  #calendlyContainer{min-width:280px; height:660px; border:1px solid var(--gold-border); background:var(--navy-mid); margin-top:18px;}
+  .wa-link{display:inline-flex; align-items:center; gap:8px; margin-top:8px; color:var(--gold-bright); font-size:13.5px;
+    border-bottom:1px solid var(--gold-border-strong); padding-bottom:2px;}
+
+  .mensaje-caja{background:var(--navy-mid); border:1px solid var(--gold-border); border-radius:2px; padding:20px 22px; text-align:left; margin:6px 0 20px;}
+  .mensaje-caja .lab{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+  .mensaje-caja pre{font-family:'Montserrat',sans-serif; font-size:13.5px; color:var(--w80); white-space:pre-wrap; line-height:1.7; font-weight:300;}
+
+  footer{border-top:1px solid var(--gold-border); padding:42px 0; text-align:center;}
+  footer .brand{font-size:18px; margin-bottom:6px;}
+  footer .tag{font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--w35);}
+  footer .contact{margin-top:16px; font-size:13.5px; letter-spacing:.04em;}
+  footer .contact a{color:var(--w55); transition:color .2s;}
+  footer .contact a:hover{color:var(--gold-bright);}
+  footer .legal{margin-top:16px; font-size:11px; color:var(--w35);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">GRID<span>Expert Advisors</span></div>
+    <div class="nav-tag">Diagnóstico de dependencia · 3 minutos</div>
+    <a href="#test" class="nav-cta">Empezar</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Para fundadores con producto validado</div>
+    <h1>Tu empresa factura.<br>¿<em>Funciona sin ti</em>?</h1>
+    <p class="lede">Nueve bloques. Tres minutos. Un puntaje sobre 36 que te dice en cuántas partes de tu operación todo se detiene cuando sales de la sala.</p>
+    <p class="note">Sin registro para ver tu resultado. <strong>Responde por comportamiento observable</strong>, no por cómo te gustaría que fuera: piensa en lo que pasó la última vez que te fuiste tres días.</p>
+
+    <div class="specs">
+      <div class="spec"><div class="n">9</div><div class="t">Bloques de tu modelo de negocio, de la captación al coste de tu tiempo.</div></div>
+      <div class="spec"><div class="n">3'</div><div class="t">Lo que tarda de verdad. Una respuesta por bloque, sin campos que rellenar.</div></div>
+      <div class="spec"><div class="n">36</div><div class="t">El puntaje máximo. Tres bloques pesan doble porque son el núcleo.</div></div>
+    </div>
+
+    <a href="#test" class="btn-gold">Empezar el diagnóstico</a>
+  </div>
+</header>
+
+<div class="escala">
+  <div class="wrap">
+    <h2 class="serif">La escala, en una línea cada una</h2>
+    <p class="sub">Para cada bloque, elige qué ocurre <em>de verdad</em> cuando tú no estás disponible.</p>
+    <div class="escala-grid">
+      <div class="esc"><div class="v">0</div><div class="l">Funciona sin ti</div><div class="d">Alguien más lo lleva y no te enteras. No hace falta que apruebes nada.</div></div>
+      <div class="esc"><div class="v">1</div><div class="l">Supervisión ligera</div><div class="d">Se resuelve sin ti, pero lo revisas de vez en cuando.</div></div>
+      <div class="esc"><div class="v">2</div><div class="l">Intervención frecuente</div><div class="d">Avanza, pero te consultan, te reenvían y acabas metiéndote.</div></div>
+      <div class="esc"><div class="v">3</div><div class="l">Se detiene sin ti</div><div class="d">Si no estás, no pasa. Punto.</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="test">
+  <div class="wrap">
+    <div class="test-head">
+      <h2 class="serif">Los nueve bloques</h2>
+      <div class="cuenta" id="cuenta">0 de 9 respondidos</div>
+    </div>
+    <div class="barra"><span id="barra"></span></div>
+    <div class="bloques" id="bloques"></div>
+  </div>
+</section>
+
+<div class="marcador" id="marcador">
+  <div class="wrap">
+    <div class="izq">
+      <div class="p" id="puntajeVivo">0<small>/36</small></div>
+      <div class="lab" id="etiquetaVivo">Responde los 9 bloques</div>
+    </div>
+    <button class="btn-gold" id="verBtn" disabled>Ver mi resultado</button>
+  </div>
+</div>
+
+<section id="resultado">
+  <div class="wrap">
+    <div class="res-card">
+      <div class="res-top">
+        <div class="res-puntaje" id="resPuntaje">0<small>/36</small></div>
+        <div class="res-tramo">
+          <div class="t serif" id="resTramo">—</div>
+          <div class="r" id="resRango">—</div>
+        </div>
+      </div>
+      <p class="res-verdict" id="resVerdict"></p>
+
+      <div class="peores" id="peoresWrap">
+        <h4>Los tres bloques que hay que sacar primero</h4>
+        <div id="peores"></div>
+      </div>
+
+      <div class="desglose">
+        <h4>Tu desglose, bloque por bloque</h4>
+        <div id="desglose"></div>
+      </div>
+    </div>
+
+    <!-- CAPTURA -->
+    <form class="captura" id="capturaForm" novalidate>
+      <h3 class="serif">Recibe la lectura completa</h3>
+      <p class="sub">Tu puntaje ya está arriba y es tuyo. Esto es lo otro: te mandamos el desglose por bloque y <strong>el primer paso concreto</strong> para sacar tu operación de tu propia cabeza.</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="empresa">Empresa</label>
+          <input type="text" id="empresa" name="empresa" required autocomplete="organization">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="email">Correo</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp (con código de país)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+506 0000 0000">
+        </div>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Enviar mi lectura</button>
+      <p class="form-foot">No compartimos tu información. Cero spam. Puedes cerrar esta página y quedarte con tu puntaje.</p>
+    </form>
+
+    <!-- ESTADO: DEPENDENCIA ALTA O CRÍTICA -->
+    <div id="estadoAlto">
+      <div class="check">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="serif">Listo. Tu lectura va en camino.</h3>
+      <p>Este es el mensaje que te vamos a mandar, para que no esperes a ciegas:</p>
+      <div class="mensaje-caja">
+        <div class="lab">Lo que verás en tu WhatsApp</div>
+        <pre id="mensajeDM"></pre>
+      </div>
+      <p>Y si prefieres saltarte la espera, aquí está la agenda. <strong>Treinta minutos, sin pitch:</strong> los primeros veinte hablas tú.</p>
+      <a class="wa-link" id="waAlto" target="_blank" rel="noopener">Escribir por WhatsApp ahora →</a>
+      <div id="calendlyContainer"></div>
+    </div>
+
+    <!-- ESTADO: DEPENDENCIA BAJA -->
+    <div id="estadoBajo">
+      <div class="check">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6FA88A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="serif">No vamos a venderte nada.</h3>
+      <p>Tu resultado dice algo poco común: <strong>tu empresa ya no depende de ti en lo esencial.</strong> La mayoría de fundadores que factura lo que tú facturas no puede decir lo mismo.</p>
+      <div class="mensaje-caja">
+        <div class="lab">Lo que verás en tu WhatsApp</div>
+        <pre id="mensajeDMBajo"></pre>
+      </div>
+      <p>GRID entra cuando el fundador <em>es</em> el cuello de botella. Hoy no es tu caso. Si eso cambia al escalar —y a veces cambia rápido— aquí estamos.</p>
+      <a class="wa-link" id="waBajo" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">GRID<span>Expert Advisors</span></div>
+    <div class="tag">Sistema nervioso comercial</div>
+    <div class="contact">
+      <a href="mailto:info@gridexpertadvisors.com">info@gridexpertadvisors.com</a> ·
+      <a href="https://gridexpertadvisors.com/" target="_blank" rel="noopener">gridexpertadvisors.com</a>
+    </div>
+    <div class="legal">GRID Expert Advisors LLC · 30 N Gould St Ste N, Sheridan, WY 82801</div>
+  </div>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ═══ CONFIGURACIÓN ═══
+     Mismas constantes que el formulario de calificación, para que los dos
+     entren por el mismo sitio. En Make se separan por el campo `origen`:
+     el formulario manda "landing-grid" y esto manda "diagnostico-dependencia". */
+  var ENDPOINT        = "https://hook.us2.make.com/njef9jrf177j3yxplnbyrg583vwvd0oy";
+  var WHATSAPP_NUMBER = "50670400607";
+  var CALENDLY_URL    = "https://calendly.com/gridexpertadvisors-info/30min";
+
+  /* ═══ LOS NUEVE BLOQUES ═══
+     [nombre, dimensión operativa, peso, pregunta de comportamiento]
+     Los tres de peso 2 son el núcleo: ingresos, recursos y actividades.
+     Máximo = (1+1+1+1+2+2+2+1+1) × 3 = 36 */
+  var BLOQUES = [
+    ["Segmentos de cliente", "Calificación de prospectos", 1, "¿Alguien decide si un prospecto vale la pena sin preguntarte a ti?"],
+    ["Propuesta de valor",   "Comunicar y vender la oferta", 1, "¿Otra persona puede explicar tu oferta y que suene igual de bien?"],
+    ["Canales",              "Generación de leads", 1, "Si no publicas ni escribes en dos semanas, ¿siguen entrando prospectos?"],
+    ["Relación con clientes","Contacto y confianza del cliente", 1, "¿Tus clientes aceptan tratar con tu equipo, o te piden a ti?"],
+    ["Fuentes de ingresos",  "Cierre de ventas", 2, "¿Se cierran ventas sin que tú estés en la llamada?"],
+    ["Recursos clave",       "Conocimiento y sistemas", 2, "Lo que hace funcionar el negocio, ¿está escrito o está en tu cabeza?"],
+    ["Actividades clave",    "Operación diaria", 2, "Si te vas tres días seguidos, ¿la operación mantiene su ritmo?"],
+    ["Alianzas clave",       "Proveedores y socios", 1, "¿Proveedores y socios trabajan con tu equipo, o solo contigo?"],
+    ["Estructura de costes", "Tu tiempo como coste", 1, "¿Tu semana está libre de tareas que podría hacer alguien más barato?"]
+  ];
+  var MAX = 36;
+  var ETIQUETAS = ["Funciona sin ti", "Supervisión ligera", "Intervención frecuente", "Se detiene sin ti"];
+  var S = new Array(9).fill(null);
+
+  /* ═══ PINTAR LOS BLOQUES ═══ */
+  var cont = document.getElementById('bloques');
+  BLOQUES.forEach(function(b, i){
+    var row = document.createElement('div');
+    row.className = 'bloque';
+    row.id = 'bloque-' + i;
+
+    var info = document.createElement('div');
+    info.className = 'bq-info';
+    var peso = b[2] === 2 ? ' <span class="x2">pesa doble</span>' : '';
+    info.innerHTML =
+      '<div class="name"><span class="num">' + (i + 1) + '</span> ' + b[0] + peso + '</div>' +
+      '<div class="dim">' + b[1] + '</div>' +
+      '<div class="q">' + b[3] + '</div>';
+
+    var segWrap = document.createElement('div');
+    var seg = document.createElement('div');
+    seg.className = 'seg';
+    seg.setAttribute('role', 'radiogroup');
+    seg.setAttribute('aria-label', b[0] + ' — ' + b[3]);
+
+    for (var v = 0; v < 4; v++) {
+      var lab = document.createElement('label');
+      var inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = 'bloque' + i;
+      inp.value = String(v);
+      inp.setAttribute('aria-label', v + ' — ' + ETIQUETAS[v]);
+      var box = document.createElement('span');
+      box.className = 'box';
+      box.textContent = String(v);
+      inp.addEventListener('change', (function(idx, val){
+        return function(){ marcar(idx, val); };
+      })(i, v));
+      lab.appendChild(inp);
+      lab.appendChild(box);
+      seg.appendChild(lab);
+    }
+
+    var ley = document.createElement('div');
+    ley.className = 'seg-leyenda';
+    ETIQUETAS.forEach(function(t){
+      var s = document.createElement('span');
+      s.textContent = t;
+      ley.appendChild(s);
+    });
+
+    segWrap.appendChild(seg);
+    segWrap.appendChild(ley);
+    row.appendChild(info);
+    row.appendChild(segWrap);
+    cont.appendChild(row);
+  });
+
+  /* ═══ ESTADO ═══ */
+  var cuentaEl    = document.getElementById('cuenta');
+  var barraEl     = document.getElementById('barra');
+  var puntajeVivo = document.getElementById('puntajeVivo');
+  var etiquetaVivo= document.getElementById('etiquetaVivo');
+  var verBtn      = document.getElementById('verBtn');
+
+  function total(){
+    var t = 0;
+    for (var i = 0; i < 9; i++) if (S[i] !== null) t += S[i] * BLOQUES[i][2];
+    return t;
+  }
+  function respondidos(){
+    return S.filter(function(x){ return x !== null; }).length;
+  }
+
+  function marcar(i, v){
+    S[i] = v;
+    var row = document.getElementById('bloque-' + i);
+    if (row) row.classList.add('hecho');
+    actualizar();
+  }
+
+  function actualizar(){
+    var n = respondidos(), t = total();
+    cuentaEl.textContent = n + ' de 9 respondidos';
+    barraEl.style.width = (n / 9 * 100) + '%';
+    puntajeVivo.innerHTML = t + '<small>/36</small>';
+    if (n < 9) {
+      etiquetaVivo.textContent = 'Faltan ' + (9 - n) + ' ' + (9 - n === 1 ? 'bloque' : 'bloques');
+      verBtn.disabled = true;
+    } else {
+      etiquetaVivo.textContent = tramo(t).nombre;
+      verBtn.disabled = false;
+    }
+  }
+
+  /* ═══ TRAMOS ═══ */
+  function tramo(t){
+    if (t <= 11) return {
+      clave: "baja",
+      nombre: "Dependencia baja",
+      rango: "0 – 11 puntos",
+      color: "var(--baja)",
+      verdict: "Tu operación ya corre sin depender de ti en lo esencial. Eso es raro, y es valioso. <strong>GRID entra cuando el fundador es el cuello de botella</strong>; hoy no es tu caso.",
+      dm: "Gracias por completar el diagnóstico.\n\nTu resultado dice algo poco común: tu empresa ya no depende de ti en lo esencial. La mayoría de fundadores que factura lo que tú facturas no puede decir lo mismo.\n\nGRID entra cuando el fundador ES el cuello de botella. Hoy no es tu caso, así que no voy a venderte nada. Si eso cambia al escalar —y a veces cambia rápido— aquí estamos."
+    };
+    if (t <= 23) return {
+      clave: "alta",
+      nombre: "Dependencia alta",
+      rango: "12 – 23 puntos",
+      color: "var(--alta)",
+      verdict: "Tu empresa factura, pero <strong>tú sigues siendo el motor</strong>. Eso tiene techo, y el techo eres tú. La buena noticia: hay bloques listos para delegar sin que la operación se caiga.",
+      dm: "Tu diagnóstico marcó dependencia alta.\n\nTraducción sin adornos: tu empresa factura, pero tú sigues siendo el motor de varios bloques clave. Eso funciona… hasta que deja de escalar. Y el límite eres tú.\n\nEn 15 minutos te muestro exactamente qué bloques se pueden sacar de tu cara primero, y cómo, sin que la operación se caiga. ¿Te va bien esta semana?"
+    };
+    return {
+      clave: "critica",
+      nombre: "Dependencia crítica",
+      rango: "24 – 36 puntos",
+      color: "var(--crit)",
+      verdict: "No estás dirigiendo tu empresa: <strong>la estás sosteniendo con las manos</strong>. Cada día que sigue así es facturación que no crece, porque toda pasa por ti y en tu día ya no cabe más.",
+      dm: "Tu diagnóstico marcó dependencia crítica.\n\nHablemos claro: no estás dirigiendo tu empresa, la estás sosteniendo con las manos. Todo pasa por ti, y por eso la facturación no crece —no cabe más en tu día.\n\nEsto se desmonta, y más rápido de lo que crees. Bloqueé un espacio para mostrarte cómo se ve tu empresa funcionando sin ti en la sala. ¿Lo tomas?"
+    };
+  }
+
+  /* ═══ RESULTADO ═══ */
+  var resultadoEl = document.getElementById('resultado');
+  var trActual = null;
+
+  verBtn.addEventListener('click', function(){
+    var t = total();
+    trActual = tramo(t);
+
+    document.getElementById('resPuntaje').innerHTML = t + '<small>/36</small>';
+    document.getElementById('resPuntaje').style.color = trActual.color;
+    var tr = document.getElementById('resTramo');
+    tr.textContent = trActual.nombre;
+    tr.style.color = trActual.color;
+    document.getElementById('resRango').textContent = trActual.rango;
+    document.getElementById('resVerdict').innerHTML = trActual.verdict;
+
+    /* Los tres peores, ponderados */
+    var orden = BLOQUES.map(function(b, i){
+      return { i: i, nombre: b[0], dim: b[1], v: S[i], pond: S[i] * b[2] };
+    }).sort(function(a, b){ return b.pond - a.pond || b.v - a.v; });
+
+    var peoresEl = document.getElementById('peores');
+    peoresEl.innerHTML = '';
+    var conProblema = orden.filter(function(o){ return o.v >= 2; }).slice(0, 3);
+    if (conProblema.length === 0) {
+      document.getElementById('peoresWrap').style.display = 'none';
+    } else {
+      document.getElementById('peoresWrap').style.display = 'block';
+      conProblema.forEach(function(o){
+        var d = document.createElement('div');
+        d.className = 'peor';
+        d.innerHTML = '<div class="p">' + o.pond + '</div>' +
+                      '<div><div class="n">' + o.nombre + '</div>' +
+                      '<div class="d">' + o.dim + ' · ' + ETIQUETAS[o.v] + '</div></div>';
+        peoresEl.appendChild(d);
+      });
+    }
+
+    /* Desglose completo */
+    var dgEl = document.getElementById('desglose');
+    dgEl.innerHTML = '';
+    BLOQUES.forEach(function(b, i){
+      var pond = S[i] * b[2];
+      var maxB = 3 * b[2];
+      var row = document.createElement('div');
+      row.className = 'dg-row';
+      row.innerHTML = '<div class="nm">' + b[0] + (b[2] === 2 ? ' <span style="color:var(--gold);font-size:11px;">×2</span>' : '') + '</div>' +
+                      '<div class="dg-bar"><i style="width:' + (pond / maxB * 100) + '%"></i></div>' +
+                      '<div class="vl">' + pond + '/' + maxB + '</div>';
+      dgEl.appendChild(row);
+    });
+
+    resultadoEl.style.display = 'block';
+    document.getElementById('marcador').style.display = 'none';
+    resultadoEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* ═══ CAPTURA Y ENVÍO ═══ */
+  var form = document.getElementById('capturaForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var requeridos = Array.prototype.slice.call(form.querySelectorAll('[required]'));
+  requeridos.forEach(function(f){
+    f.addEventListener('input', function(){
+      f.classList.toggle('valid', f.value.trim() !== '');
+    });
+  });
+
+  function utm(){
+    var p = new URLSearchParams(window.location.search);
+    return {
+      utm_source:   p.get('utm_source')   || '',
+      utm_medium:   p.get('utm_medium')   || '',
+      utm_campaign: p.get('utm_campaign') || '',
+      utm_content:  p.get('utm_content')  || '',
+      utm_term:     p.get('utm_term')     || '',
+      referrer:     document.referrer || 'directo',
+      landing_url:  window.location.href
+    };
+  }
+
+  function mensajeWa(d){
+    return 'Hola GRID, soy ' + d.nombre + ' de ' + d.empresa +
+           '. Hice el diagnóstico de dependencia y me salió ' + d.tramo +
+           ' (' + d.puntaje + '/36). Quiero ver qué bloques se pueden sacar primero.';
+  }
+
+  function initCalendly(d){
+    var c = document.getElementById('calendlyContainer');
+    c.innerHTML = '';
+    (function intenta(){
+      if (window.Calendly) {
+        window.Calendly.initInlineWidget({
+          url: CALENDLY_URL,
+          parentElement: c,
+          prefill: { name: d.nombre, email: d.email }
+        });
+      } else {
+        setTimeout(intenta, 200);
+      }
+    })();
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var faltan = requeridos.filter(function(f){ return f.value.trim() === ''; });
+    if (faltan.length) { faltan[0].focus(); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    var t = total();
+    var tr = trActual || tramo(t);
+
+    /* Payload plano, mismas claves que el formulario donde coinciden,
+       más el detalle por bloque. Mapear en Make a los campos del CRM. */
+    var data = {
+      nombre:   document.getElementById('nombre').value.trim(),
+      empresa:  document.getElementById('empresa').value.trim(),
+      email:    document.getElementById('email').value.trim(),
+      whatsapp: document.getElementById('whatsapp').value.trim(),
+      puntaje:  t,
+      maximo:   MAX,
+      tramo:    tr.nombre,
+      calificado: tr.clave !== 'baja',
+      origen:   'diagnostico-dependencia',
+      fecha:    new Date().toISOString()
+    };
+    BLOQUES.forEach(function(b, i){
+      data['b' + (i + 1) + '_' + b[0].toLowerCase().replace(/[^a-z0-9]+/g, '_')] = S[i];
+    });
+    Object.keys(utm()).forEach(function(k){ data[k] = utm()[k]; });
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(function(err){
+      console.warn('No se pudo enviar al webhook.', err);
+    }).then(function(){
+      var waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(mensajeWa(data));
+      form.style.display = 'none';
+
+      if (data.calificado) {
+        document.getElementById('mensajeDM').textContent = tr.dm;
+        document.getElementById('waAlto').href = waUrl;
+        document.getElementById('estadoAlto').style.display = 'block';
+        document.getElementById('estadoAlto').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        initCalendly(data);
+      } else {
+        document.getElementById('mensajeDMBajo').textContent = tr.dm;
+        document.getElementById('waBajo').href = waUrl;
+        document.getElementById('estadoBajo').style.display = 'block';
+        document.getElementById('estadoBajo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  actualizar();
+})();
+</script>
+
+</body>
+</html>
