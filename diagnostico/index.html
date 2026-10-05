@@ -205,6 +205,13 @@
   footer .contact a:hover{color:var(--gold-bright);}
   footer .legal{margin-top:16px; font-size:11px; color:var(--w35);}
 </style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A1628">
+<link rel="canonical" href="https://gridexpertadvisors.com/diagnostico/">
+<style>.hp-field{position:absolute!important;left:-10000px!important;top:auto;width:1px;height:1px;overflow:hidden}</style>
 </head>
 <body>
 
@@ -314,6 +321,10 @@
           <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+506 0000 0000">
         </div>
       </div>
+      <div class="hp-field" aria-hidden="true">
+        <label for="sitio_web">No completar este campo</label>
+        <input type="text" id="sitio_web" name="sitio_web" tabindex="-1" autocomplete="off">
+      </div>
       <button type="submit" class="submit-btn" id="submitBtn">Enviar mi lectura</button>
       <p class="form-foot">No compartimos tu información. Cero spam. Puedes cerrar esta página y quedarte con tu puntaje.</p>
     </form>
@@ -360,6 +371,7 @@
       <a href="https://gridexpertadvisors.com/" target="_blank" rel="noopener">gridexpertadvisors.com</a>
     </div>
     <div class="legal">GRID Expert Advisors LLC · 30 N Gould St Ste N, Sheridan, WY 82801</div>
+    <div class="legal"><a href="/aviso-legal/">Aviso legal</a> · <a href="/privacidad/">Privacidad</a> · <a href="/cookies/">Cookies</a> · <a href="#" data-consent-open>Preferencias de cookies</a></div>
   </div>
 </footer>
 
@@ -372,6 +384,7 @@
      Mismas constantes que el formulario de calificación, para que los dos
      entren por el mismo sitio. En Make se separan por el campo `origen`:
      el formulario manda "landing-grid" y esto manda "diagnostico-dependencia". */
+  var T_CARGA         = Date.now(); /* antispam: un humano tarda minutos en hacer el test */
   var ENDPOINT        = "https://hook.us2.make.com/njef9jrf177j3yxplnbyrg583vwvd0oy";
   var WHATSAPP_NUMBER = "50670400607";
   var CALENDLY_URL    = "https://calendly.com/gridexpertadvisors-info/30min";
@@ -646,11 +659,13 @@
     });
     Object.keys(utm()).forEach(function(k){ data[k] = utm()[k]; });
 
-    fetch(ENDPOINT, {
+    /* Antispam: campo trampa lleno o envio en menos de 8 s = bot. Se simula exito sin enviar nada. */
+    var esBot = document.getElementById('sitio_web').value !== '' || (Date.now() - T_CARGA) < 8000;
+    (esBot ? Promise.resolve() : fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).catch(function(err){
+    })).catch(function(err){
       console.warn('No se pudo enviar al webhook.', err);
     }).then(function(){
       var waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(mensajeWa(data));
@@ -675,5 +690,6 @@
 })();
 </script>
 
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
